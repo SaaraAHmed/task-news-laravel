@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Examplecontroller; 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+                                                   //task 1
 
 Route::prefix('web structures')->group( function() {
     Route::get('/',function(){
@@ -32,3 +32,16 @@ Route::prefix('web structures')->group( function() {
         return  '<li>'. $training.'</ol>'.'<ol>'. $hr.'</ol>'.'<ol>'. $ict.'</ol>'.'<ol>'. $markting.'</li>'.'<ol>'. $logistics.'</li>';    
     });
 })->whereIn('web structures', ['web','wep','wap']);
+
+
+                                                //task 2  Add car
+Route::get('login',function () {
+    return  view('login');    
+});
+
+//to get data from login
+Route::POST('receive',function () {
+    return  ('Data received');    
+})->name('receive');
+
+Route::get('car', [Carcontroller::class,'car']);
