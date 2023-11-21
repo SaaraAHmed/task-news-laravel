@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Examplecontroller; 
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,7 @@ use App\Http\Controllers\Examplecontroller;
 Route::get('/', function () {
     return view('welcome');
 });
-                                                   //task 1
+                                                   //task 2
 
 Route::prefix('web structures')->group( function() {
     Route::get('/',function(){
@@ -34,7 +35,7 @@ Route::prefix('web structures')->group( function() {
 })->whereIn('web structures', ['web','wep','wap']);
 
 
-                                                //task 2  Add car
+                                                //task 3  Add car
 Route::get('login',function () {
     return  view('login');    
 });
@@ -45,3 +46,14 @@ Route::POST('receive',function () {
 })->name('receive');
 
 Route::get('car', [Carcontroller::class,'car']);
+
+// Route::get('login', [Carcontroller::class,'login']);
+// Route::post('receive', [Carcontroller::class,'received'])->name('receive');
+
+
+ //****************************                   //task 4  section news
+
+
+
+ Route::post('storenews', [NewsController::class,'store'])->name('storenews');
+ Route::get('createnews', [NewsController::class,'create']);
