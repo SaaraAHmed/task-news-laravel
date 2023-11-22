@@ -9,6 +9,7 @@ class Carcontroller extends Controller
     // public function car(){
     //     return view("login");
     // }
+    
     public function login(){
         return view("login");
     }

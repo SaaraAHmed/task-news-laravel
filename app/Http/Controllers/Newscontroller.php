@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+
 use \App\Models\News;
 
 class Newscontroller extends Controller
@@ -12,7 +14,8 @@ class Newscontroller extends Controller
      */
     public function index()
     {
-        //
+        $news= News::get();
+        return view('newstable',compact('news'));
     }
 
     /**
@@ -33,12 +36,13 @@ class Newscontroller extends Controller
         $news= new news;
         $news->newsTitle=$request->title;
         $news->content=$request->content;
+        $news->author=$request->author;
        if(isset($request->published)){
            $news->published=true;
           } else {
             $news->published=false;
            }
-        $news->author=$request->author;
+        
        
         $news->save( );
         return "News data added successfully";
@@ -58,7 +62,9 @@ class Newscontroller extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $new=News::findOrFail($id);
+        return view('updatenews',compact('new'));
+
     }
 
     /**

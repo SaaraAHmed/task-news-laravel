@@ -22,14 +22,13 @@
       <label for="content">content:</label>
       <input type="text" class="content" id="content" placeholder="content" name="content">
     </div>
-    <div class="checkbox">
-      <label><input type="checkbox" name="published"> Published</label>
-    </div>
-      <div class="form-group">
+     <div class="form-group">
         <label for="author">author:</label>
         <input type="text" class="author" id="author" placeholder="author" name="author">
       </div>
-    
+    <div class="checkbox">
+      <label><input type="checkbox" name="published"> Published</label>
+    </div>
     <button type="submit" class="btn btn-default">Add</button>
   </form>
 </div>
