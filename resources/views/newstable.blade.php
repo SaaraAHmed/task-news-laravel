@@ -18,9 +18,11 @@
       <tr>
         <th>title</th>
         <th>content</th>
-        <th>auther</th>
+        <th>author</th>
         <th>published</th>        
         <th>Edit</th>
+        <th>show</th>
+        <th>delete</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +39,8 @@
             @endif  
         </td>
         <td><a href="editNews/{{ $new->id }}" >Edit</a></td>
+        <td><a href="newsDetail/{{ $new->id }}" >show</a></td>
+        <td><a href="deleteNews/{{ $new->id }}" >delete</a></td>
        </tr>
        @endforeach
       

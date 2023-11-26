@@ -66,3 +66,8 @@ Route::get('car', [Carcontroller::class,'car']);
  Route::get('editNews/{id}', [NewsController::class,'edit']);
  Route::put('updateNews/{id}', [NewsController::class,'update'])->name('updateNews');
 
+
+ //***********************************               task 6 show/delete News
+
+ Route::get('newsDetail/{id}', [NewsController::class,'show'])->name('newsDetail');
+ Route::get('deleteNews/{id}', [NewsController::class,'destroy']);

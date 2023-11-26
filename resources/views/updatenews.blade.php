@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>news</title>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,9 +9,10 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
 <div class="container">
-  <h2>Edit News</h2>
-  <div class="form-group" action="{{ route('updateNews',$new->id)}}"  method="POST">
+  <h2>Vertical (basic) form</h2>
+  <form action="{{ route('updateNews',$new->id)}}"  method="POST">
      @csrf
      @method('put')   
       <label for="title">Title:</label>
@@ -28,8 +29,7 @@
     <div class="checkbox">
       <label><input type="checkbox" name="published" @checked($new->published)> Published </label>
     </div>
-    
-    <button type="submit" class="btn btn-default">update</button>
+    <button type="submit" class="btn btn-default">Submit</button>
   </form>
 </div>
 
