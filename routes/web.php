@@ -45,7 +45,7 @@ Route::POST('receive',function () {
     return  ('Data received');    
 })->name('receive');
 
-Route::get('car', [Carcontroller::class,'car']);
+Route::get('news', [NewsController::class,'news']);
 
 // Route::get('login', [Carcontroller::class,'login']);
 // Route::post('receive', [Carcontroller::class,'received'])->name('receive');
@@ -71,3 +71,11 @@ Route::get('car', [Carcontroller::class,'car']);
 
  Route::get('newsDetail/{id}', [NewsController::class,'show'])->name('newsDetail');
  Route::get('deleteNews/{id}', [NewsController::class,'destroy']);
+
+
+ //***********************************               task 7 softdelete/forcedelete/restore/valiation News
+
+
+ Route::get('trashed', [NewsController::class,'trashed']); 
+Route::get('newsDeleted/{id}', [NewsController::class,'newsDeleted']);
+Route::get('restoreNews/{id}', [NewsController::class,'restoreNews']);

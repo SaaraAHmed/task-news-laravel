@@ -9,7 +9,7 @@ use \App\Models\News;
 
 class Newscontroller extends Controller
 {
-    private $columns = ['newsTitle', 'description','author'];
+    private $columns = ['newsTitle', 'content','author','published'];
     /**
      * Display a listing of the resource.
      */
@@ -34,22 +34,33 @@ class Newscontroller extends Controller
      */
     public function store(Request $request)
     {
-        $news= new news;
-        $news->newsTitle=$request->title;
-        $news->content=$request->content;
-        $news->author=$request->author;
-       if(isset($request->published)){
-           $news->published=true;
-          } else {
-            $news->published=false;
-           }
+    //     $news= new news;
+    //     $news->newsTitle=$request->newsTitle;
+    //     $news->content=$request->content;
+    //     $news->author=$request->author;
+    //    if(isset($request->published)){
+    //        $news->published=true;
+    //       } else {
+    //         $news->published=false;
+    //        }
         
        
-        $news->save( );
-        return "News data added successfully";
+    //     $news->save( );
+    //     return "News data added successfully";
 
-    }
+   
+    $data=$request->only($this->columns);
+    $data['published']=isset($data['published']) ? true : false;
 
+    $request->validate([
+        'newsTitle'=>'required|string|max:5',
+        'content'=>'required|string',
+           'author'=>'required|string',
+   
+    ]);
+    News::create($data);
+    return 'done successfully';
+   }
     /**
      * Display the specified resource.
      */
@@ -82,9 +93,31 @@ class Newscontroller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id):RedirectResponse
     {
         News::where('id', $id)->delete( );
+        return  redirect('news');
+    }
+
+
+
+    public function trashed() 
+    {       
+        //return 'deleteCar successfull';
+        $news= News::onlyTrashed()->get( );
+        return view('trashed',compact('news'));
+ 
+    }
+    
+    public function newsDeleted(string $id) :RedirectResponse
+    {
+       News::where('id', $id)->forceDelete( );
+        return  redirect('news');
+    }
+
+    public function restoreNews(string $id) :RedirectResponse
+    {
+        News::where('id', $id)->restore( );
         return  redirect('news');
     }
 }
